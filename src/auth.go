@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -11,8 +12,17 @@ type Auth struct {
 }
 
 func (a *Auth) obfuscateApiKey() {
-	unix_now := time.Now().Unix()
-	fmt.Println(unix_now)
+	unix_now := time.Now().UnixNano() / int64(time.Millisecond)
+	convert_str_unix := strconv.FormatInt(unix_now, 10)
+	key_from_unix := convert_str_unix[len(convert_str_unix)-6:]
+	r, _ := strconv.Atoi(key_from_unix)
+	shifted_key := fmt.Sprintf("%06d", r>>1)
+
+	// var obfuscateApiKey string
+
+	fmt.Println(key_from_unix)
+	fmt.Println(shifted_key)
+
 }
 
 func main() {

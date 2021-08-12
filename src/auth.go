@@ -19,6 +19,12 @@ func (a *Auth) obfuscateApiKey() {
 	shifted_key := fmt.Sprintf("%06d", r>>1)
 
 	// var obfuscateApiKey string
+	int_key_from_unix, _ := strconv.Atoi(key_from_unix)
+	fmt.Println(int_key_from_unix)
+	// for i := 0; i < len(int_key_from_unix); i++ {
+	// 	pass
+	// 	fmt.Println()
+	// }
 
 	fmt.Println(key_from_unix)
 	fmt.Println(shifted_key)

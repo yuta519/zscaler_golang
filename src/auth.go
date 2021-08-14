@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"strconv"
 	"time"
-
-	"github.com/yuta519/gotrading/config"
 )
 
 type Auth struct {
@@ -36,6 +34,4 @@ func (a *Auth) obfuscateApiKey() {
 func main() {
 	auth := Auth{"aaaaa", "11111111"}
 	auth.obfuscateApiKey()
-	fmt.Println(config.Config.ApiKey)
-	fmt.Println(config.Config.ApiSecret)
 }

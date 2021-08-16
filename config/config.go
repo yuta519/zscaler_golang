@@ -8,21 +8,25 @@ import (
 )
 
 type ConfigList struct {
-	ApiKey    string
-	ApiSecret string
+	UserName string
+	Password string
+	Hostname string
+	ApiKey   string
 }
 
 var Config ConfigList
 
 func init() {
-	cfg, err := ini.Load("config.ini")
+	cfg, err := ini.Load("config/config.ini")
 	if err != nil {
 		log.Printf("Failed to read file: %v", err)
 		os.Exit(1)
 	}
 
 	Config = ConfigList{
-		ApiKey:    cfg.Section("bitflyer").Key("api_key").String(),
-		ApiSecret: cfg.Section("bitflyer").Key("api_secret").String(),
+		UserName: cfg.Section("credential").Key("USERNAME").String(),
+		Password: cfg.Section("credential").Key("PASSWORD").String(),
+		Hostname: cfg.Section("credential").Key("HOSTNAME").String(),
+		ApiKey:   cfg.Section("credential").Key("APIKEY").String(),
 	}
 }

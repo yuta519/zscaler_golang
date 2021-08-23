@@ -1,25 +1,26 @@
-package main
+package auth
 
 import (
 	"fmt"
 	"strconv"
 	"time"
-
 	"zscaler_golang/config"
 )
 
-type Auth struct {
-	ApiKey string
+type AuthPrepare struct {
+	ObfuscatedApiKey string
 }
 
-func (a *Auth) obfuscateApiKey() string {
+var Auth AuthPrepare
+
+func init() {
 	unix_now := time.Now().UnixNano() / int64(time.Millisecond)
 	convert_str_unix := strconv.FormatInt(unix_now, 10)
 	key_from_unix := convert_str_unix[len(convert_str_unix)-6:]
 	r, _ := strconv.Atoi(key_from_unix)
 	shifted_key := fmt.Sprintf("%06d", r>>1)
 
-	apikey := a.ApiKey
+	apikey := config.Config.ApiKey
 	var obfuscatedApiKey string
 
 	for _, i := range key_from_unix {
@@ -32,12 +33,8 @@ func (a *Auth) obfuscateApiKey() string {
 		obfuscatedApiKey += string(apikey[index])
 	}
 
-	fmt.Println(obfuscatedApiKey)
-	return obfuscatedApiKey
+	Auth = AuthPrepare{
+		ObfuscatedApiKey: obfuscatedApiKey,
+	}
 
-}
-
-func main() {
-	auth := Auth{config.Config.ApiKey}
-	auth.obfuscateApiKey()
 }

@@ -2,19 +2,16 @@ package auth
 
 import (
 	"fmt"
-	"log"
-	"os"
 	"strconv"
 	"time"
-
-	"gopkg.in/ini.v1"
+	"zscaler_golang/config"
 )
 
-type Auth struct {
-	ApiKey string
+type AuthPrepare struct {
+	ObfuscatedApiKey string
 }
 
-var auth Auth
+var Auth AuthPrepare
 
 func init() {
 	unix_now := time.Now().UnixNano() / int64(time.Millisecond)
@@ -23,7 +20,7 @@ func init() {
 	r, _ := strconv.Atoi(key_from_unix)
 	shifted_key := fmt.Sprintf("%06d", r>>1)
 
-	apikey := auth.ApiKey
+	apikey := config.Config.ApiKey
 	var obfuscatedApiKey string
 
 	for _, i := range key_from_unix {
@@ -36,34 +33,8 @@ func init() {
 		obfuscatedApiKey += string(apikey[index])
 	}
 
-	fmt.Println(obfuscatedApiKey)
-	return obfuscatedApiKey
-	auth = Auth{
-		ApiKey: obfuscatedApiKey,
+	Auth = AuthPrepare{
+		ObfuscatedApiKey: obfuscatedApiKey,
 	}
 
-}
-
-type ConfigList struct {
-	UserName string
-	Password string
-	Hostname string
-	ApiKey   string
-}
-
-var Config ConfigList
-
-func init() {
-	cfg, err := ini.Load("config/config.ini")
-	if err != nil {
-		log.Printf("Failed to read file: %v", err)
-		os.Exit(1)
-	}
-
-	Config = ConfigList{
-		UserName: cfg.Section("credential").Key("USERNAME").String(),
-		Password: cfg.Section("credential").Key("PASSWORD").String(),
-		Hostname: cfg.Section("credential").Key("HOSTNAME").String(),
-		ApiKey:   cfg.Section("credential").Key("APIKEY").String(),
-	}
 }

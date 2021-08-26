@@ -9,6 +9,7 @@ import (
 
 type AuthPrepare struct {
 	ObfuscatedApiKey string
+	Timestamp        int64
 }
 
 var Auth AuthPrepare
@@ -35,6 +36,7 @@ func init() {
 
 	Auth = AuthPrepare{
 		ObfuscatedApiKey: obfuscatedApiKey,
+		Timestamp:        unix_now,
 	}
 
 }

@@ -1,32 +1,58 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
+	"strconv"
 	"zscaler_golang/auth"
 	"zscaler_golang/config"
 )
 
-func login(hostname string, login_session string) {
-	api_endpoint := "https://" + hostname + "/api/v1/status"
-	jsession := "JSESSIONID=" + login_session
-	req, _ := http.NewRequest("GET", api_endpoint, nil)
-	req.Header.Set("content-type", "application/json")
-	req.Header.Set("cache-control", "no-cache")
-	req.Header.Set("cookie", jsession)
-	client := new(http.Client)
-	resp, err := client.Do(req)
+type Payload struct {
+	APIKey    string `json:"apiKey"`
+	Username  string `json:"username"`
+	Password  string `json:"password"`
+	Timestamp string `json:"timestamp"`
+}
+
+func login(
+	hostname string,
+	api_key string,
+	username string,
+	password string,
+	timestamp int,
+) {
+	base, _ := url.Parse("https://" + hostname)
+	reference, _ := url.Parse("/api/v1/authenticatedSession")
+	endpoint := base.ResolveReference(reference).String()
+
+	payload := new(Payload)
+	payload.APIKey = api_key
+	payload.Username = username
+	payload.Password = password
+	payload.Timestamp = strconv.Itoa(timestamp)
+	payload_json, _ := json.Marshal(payload)
+
+	fmt.Printf("[+] %s\n", string(payload_json))
+
+	res, err := http.Post(endpoint, "application/json", bytes.NewBuffer(payload_json))
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Request Error: ", err)
+		return
 	}
-	fmt.Println(api_endpoint, resp)
+	defer res.Body.Close()
+	fmt.Println(res)
 }
 
 func main() {
-	login_session := auth.Auth.ObfuscatedApiKey
+	api_key := auth.Auth.ObfuscatedApiKey
+	timestamp := auth.Auth.Timestamp
 	hostname := config.Config.Hostname
-	// username := config.Config.UserName
-	// password := config.Config.Password
-	login(hostname, login_session)
+	username := config.Config.UserName
+	password := config.Config.Password
+	login(hostname, api_key, username, password, timestamp)
 	// fmt.Println(hostname, username, password, login_session)
 }

@@ -44,3 +44,13 @@ func Login() string {
 	}
 	return session_id
 }
+
+func Logout() {
+	base, _ := url.Parse("https://" + config.Config.Hostname)
+	reference, _ := url.Parse("/api/v1/authenticatedSession")
+	endpoint := base.ResolveReference(reference).String()
+	_, err := http.NewRequest("DELETE", endpoint, nil)
+	if err != nil {
+		fmt.Println("Request Error: ", err)
+	}
+}

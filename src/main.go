@@ -19,11 +19,7 @@ type Payload struct {
 }
 
 func login(
-	hostname string,
-	api_key string,
-	username string,
-	password string,
-	timestamp int,
+	hostname string, api_key string, username string, password string, timestamp int,
 ) {
 	base, _ := url.Parse("https://" + hostname)
 	reference, _ := url.Parse("/api/v1/authenticatedSession")
@@ -35,8 +31,6 @@ func login(
 	payload.Password = password
 	payload.Timestamp = strconv.Itoa(timestamp)
 	payload_json, _ := json.Marshal(payload)
-
-	fmt.Printf("[+] %s\n", string(payload_json))
 
 	res, err := http.Post(endpoint, "application/json", bytes.NewBuffer(payload_json))
 	if err != nil {
@@ -54,5 +48,4 @@ func main() {
 	username := config.Config.UserName
 	password := config.Config.Password
 	login(hostname, api_key, username, password, timestamp)
-	// fmt.Println(hostname, username, password, login_session)
 }

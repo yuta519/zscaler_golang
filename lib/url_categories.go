@@ -22,7 +22,7 @@ func endpoint(is_full bool) string {
 	return endpoint
 }
 
-func FetchAllUrlCategories() string {
+func FetchAllUrlCategories() []byte {
 	session_id := Login()
 	is_full := true
 	response := GetApi(endpoint(is_full), session_id)
@@ -30,7 +30,7 @@ func FetchAllUrlCategories() string {
 	return response
 }
 
-func FetchLightWeightUrlCategories() string {
+func FetchLightWeightUrlCategories() []byte {
 	session_id := Login()
 	is_full := false
 	response := GetApi(endpoint(is_full), session_id)

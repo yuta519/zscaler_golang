@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func GetApi(url string, session_id string) string {
+func GetApi(url string, session_id string) []byte {
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Set("content-type", "application/json")
 	req.Header.Set("cache-control", "no-cache")
@@ -17,10 +17,10 @@ func GetApi(url string, session_id string) string {
 		fmt.Println(err)
 	}
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return string(byteArray)
+	return byteArray
 }
 
-func PostApi(url string, session_id string) string {
+func PostApi(url string, session_id string) []byte {
 	req, _ := http.NewRequest("POST", url, nil)
 	req.Header.Set("content-type", "application/json")
 	req.Header.Set("cache-control", "no-cache")
@@ -31,5 +31,5 @@ func PostApi(url string, session_id string) string {
 		fmt.Println(err)
 	}
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return string(byteArray)
+	return byteArray
 }

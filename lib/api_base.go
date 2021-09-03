@@ -16,8 +16,8 @@ func GetApi(url string, session_id string) []byte {
 	if err != nil {
 		fmt.Println(err)
 	}
-	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return byteArray
+	body, _ := ioutil.ReadAll(resp.Body)
+	return body
 }
 
 func PostApi(url string, session_id string) []byte {
@@ -30,6 +30,6 @@ func PostApi(url string, session_id string) []byte {
 	if err != nil {
 		fmt.Println(err)
 	}
-	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return byteArray
+	body, _ := ioutil.ReadAll(resp.Body)
+	return body
 }

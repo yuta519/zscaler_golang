@@ -22,12 +22,30 @@ func endpoint(is_full bool) string {
 	return endpoint
 }
 
-func FetchAllUrlCategories() []byte {
+type UrlCategory struct {
+	Id                               string   `json:"id"`
+	Urls                             []string `json:"urls"`
+	DbCategorizedUrls                []string `json:"dbCategorizedUrls"`
+	CustomCateogry                   bool     `json:"customCateogry"`
+	Editable                         bool     `json:"editable"`
+	Description                      string   `json:"description"`
+	Type                             string   `json:"Type"`
+	Val                              int      `json:"val"`
+	CustomUrlsCount                  int      `json:"customUrlsCount"`
+	UrlsRetainingParentCategoryCount int      `json:"urlsRetainingParentCategoryCount"`
+}
+
+func FetchAllUrlCategories() []UrlCategory {
 	session_id := Login()
 	is_full := true
 	response := GetApi(endpoint(is_full), session_id)
 	Logout()
-	return response
+	var url_categories []UrlCategory
+	json.Unmarshal(response, &url_categories)
+	for i := range url_categories {
+		fmt.Println(url_categories[i].Id)
+	}
+	return url_categories
 }
 
 func FetchLightWeightUrlCategories() []byte {
@@ -38,10 +56,6 @@ func FetchLightWeightUrlCategories() []byte {
 	return response
 }
 
-type UrlLookupPayload struct {
-	Urls []string `json:"urls"`
-}
-
 func LookupUrlCategory(tareget_urls []string) string {
 	session_id := Login()
 
@@ -49,12 +63,8 @@ func LookupUrlCategory(tareget_urls []string) string {
 	reference, _ := url.Parse("/api/v1/urlLookup")
 	endpoint := url_base.ResolveReference(reference).String()
 
-	payload := new(UrlLookupPayload)
-	payload.Urls = tareget_urls
-	// payload := `{"token":"` + tareget_urls `"}`
+	payload := tareget_urls
 	payload_json, _ := json.Marshal(payload)
-	// fmt.Print(string(payload_json))
-	// fmt.Println(tareget_urls)
 
 	req, _ := http.NewRequest("POST", endpoint, bytes.NewBuffer(payload_json))
 	req.Header.Set("content-type", "application/json")
@@ -69,5 +79,4 @@ func LookupUrlCategory(tareget_urls []string) string {
 	Logout()
 	byteArray, _ := ioutil.ReadAll(resp.Body)
 	return string(byteArray)
-	// return ""
 }

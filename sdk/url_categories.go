@@ -1,4 +1,4 @@
-package lib
+package sdk
 
 import (
 	"bytes"
@@ -55,8 +55,6 @@ func LookupUrlCategory(tareget_urls []string) string {
 	payload_json, _ := json.Marshal(payload)
 	// fmt.Print(string(payload_json))
 	// fmt.Println(tareget_urls)
-	// aaa := []byte(tareget_urls)
-	// aaa := make([]byte, tareget_urls)
 
 	req, _ := http.NewRequest("POST", endpoint, bytes.NewBuffer(payload_json))
 	req.Header.Set("content-type", "application/json")

@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"zscaler_golang/sdk"
+	"zscaler_golang/pkg"
 )
 
 func main() {
-	sdk.FetchAllUrlCategories()
+	pkg.FetchAllUrlCategories()
 	target_urls := []string{"aaa.com", "bbb.com"}
-	category := sdk.LookupUrlCategory(target_urls)
+	category := pkg.LookupUrlCategory(target_urls)
 	fmt.Print(category)
 }

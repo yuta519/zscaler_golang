@@ -1,8 +1,9 @@
 package pkg
 
 import (
-	"encoding/json"
 	"fmt"
+	"net/url"
+	"zscaler_golang/config"
 )
 
 type UrlFilteringRule struct {
@@ -14,18 +15,16 @@ type UrlFilteringRule struct {
 	// TODO: later...
 }
 
-func FetchAllUrlFilteringRules() []UrlFilteringRule {
+func FetchAllUrlFilteringRules() {
 	session_id := Login()
-	is_full := true
-	response := GetApi(endpoint_rul_categories(is_full), session_id)
-	Logout()
-	var url_categories []UrlCategory
-	json.Unmarshal(response, &url_categories)
-	for i := range url_categories {
-		fmt.Println(url_categories[i].Id)
-	}
-	var rules []UrlFilteringRule
-	return rules
+
+	url_base, _ := url.Parse("https://" + config.Config.Hostname)
+	reference, _ := url.Parse("/api/v1/urlFilteringRules")
+	endpoint := url_base.ResolveReference(reference).String()
+
+	resposne := GetApi(endpoint, session_id)
+
+	fmt.Println(string(resposne))
 }
 
 func FetchSpecifiedUrlFilteringRule() UrlFilteringRule {

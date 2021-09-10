@@ -77,22 +77,19 @@ func FetchAllUrlCategories() []UrlCategory {
 	is_full := true
 	response := GetApi(endpoint_rul_categories(is_full), session_id)
 	Logout()
+
 	var url_categories []UrlCategory
-	// var shaped_results []string
 	json.Unmarshal(response, &url_categories)
+
+	var category_names []string
 	for _, url_category := range url_categories {
 		if len(url_category.ConfiguredName) > 0 {
-			fmt.Println(url_category.Id)
-			fmt.Println(url_category.ConfiguredName)
+			category_names = append(category_names, url_category.ConfiguredName)
+		} else {
+			category_names = append(category_names, url_category.Id)
 		}
-		// fmt.Println(url_category.ConfiguredName)
-		// if url_category.ConfiguredName != "" {
-		// 	shaped_results = append(shaped_results, url_category.Id)
-		// } else {
-		// 	shaped_results = append(shaped_results, url_category.ConfiguredName)
-		// }
 	}
-	// fmt.Print(shaped_results)
+	fmt.Println(category_names)
 	return url_categories
 }
 

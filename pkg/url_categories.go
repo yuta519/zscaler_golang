@@ -88,15 +88,8 @@ func FetchAllUrlCategories() []UrlCategory {
 		} else {
 			category_names = append(category_names, url_category.Id)
 		}
-		// fmt.Println(url_category.ConfiguredName)
-		// if url_category.ConfiguredName != "" {
-		// 	shaped_results = append(shaped_results, url_category.Id)
-		// } else {
-		// 	shaped_results = append(shaped_results, url_category.ConfiguredName)
-		// }
 	}
 	fmt.Println(category_names)
-	// fmt.Print(shaped_results)
 	return url_categories
 }
 

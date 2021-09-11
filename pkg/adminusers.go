@@ -103,7 +103,6 @@ func CreateAdminUsers(
 
 	resp_byte, _ := ioutil.ReadAll(resp.Body)
 	var message string
-
 	if resp.StatusCode == 200 {
 		var adminuser SuccessCreatedAdminUser
 		json.Unmarshal(resp_byte, &adminuser)
@@ -115,5 +114,4 @@ func CreateAdminUsers(
 	}
 
 	return message
-
 }

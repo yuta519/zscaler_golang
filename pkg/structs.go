@@ -53,18 +53,17 @@ type UrlCategory struct {
 }
 
 type CreateUrlFilterRuleParameter struct {
-	Id                  string                 `json:"id"`
-	AccessControl       string                 `json:"accessControl"`
-	Name                string                 `json:"name"`
-	Order               int                    `json:"order"`
-	Protocols           []string               `json:"protocols"`
-	Users               map[string]interface{} `json:"users"`
-	UrlCategories       []string               `json:"urlCategories"`
-	State               string                 `json:"state"`
-	Rank                int                    `json:"rank"`
-	RequestMethods      []string               `json:"requestMethods"`
-	BlockOverride       bool                   `json:"blockOverride"`
-	EnforceTimeValidity bool                   `json:"enforceTimeValidity"`
-	CbiProfileId        int                    `json:"cbiProfileId"`
-	Action              string                 `json:"action"`
+	AccessControl       string        `json:"accessControl"`
+	Name                string        `json:"name"`
+	Order               int           `json:"order"`
+	Protocols           []string      `json:"protocols"`
+	Users               []interface{} `json:"users"`
+	UrlCategories       []string      `json:"urlCategories"`
+	State               string        `json:"state"`
+	Rank                int           `json:"rank"`
+	RequestMethods      []string      `json:"requestMethods"`
+	BlockOverride       bool          `json:"blockOverride"`
+	EnforceTimeValidity bool          `json:"enforceTimeValidity"`
+	CbiProfileId        int           `json:"cbiProfileId"`
+	Action              string        `json:"action"`
 }

@@ -11,20 +11,13 @@ import (
 	"zscaler_golang/config"
 )
 
-type Payload struct {
-	APIKey    string `json:"apiKey"`
-	Username  string `json:"username"`
-	Password  string `json:"password"`
-	Timestamp string `json:"timestamp"`
-}
-
 func Login() string {
 	var session_id string
 
 	base, _ := url.Parse("https://" + config.Config.Hostname)
 	reference, _ := url.Parse("/api/v1/authenticatedSession")
 	endpoint := base.ResolveReference(reference).String()
-	payload := new(Payload)
+	payload := new(ApiCredential)
 	payload.APIKey = auth.Auth.ObfuscatedApiKey
 	payload.Username = config.Config.UserName
 	payload.Password = config.Config.Password

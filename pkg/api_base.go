@@ -20,7 +20,7 @@ func GetApi(url string, session_id string) []byte {
 	return body
 }
 
-func PostApi(url string, session_id string) []byte {
+func PostApi(url string, session_id string, payload interface{}) []byte {
 	req, _ := http.NewRequest("POST", url, nil)
 	req.Header.Set("content-type", "application/json")
 	req.Header.Set("cache-control", "no-cache")

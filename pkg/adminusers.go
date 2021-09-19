@@ -11,40 +11,6 @@ import (
 	"zscaler_golang/config"
 )
 
-// type ArgsForCreateAdminUsers {
-// }
-
-type AdminRole struct {
-	Id       int    `json:"id"`
-	Rank     int    `json:"rank"`
-	Name     string `json:"name"`
-	RoleType string `json:"roleType"`
-}
-
-type CreateAdminUserParameter struct {
-	LoginName              string         `json:"loginName"`
-	UserName               string         `json:"userName"`
-	Email                  string         `json:"email"`
-	Password               string         `json:"password"`
-	Role                   map[string]int `json:"role"`
-	AdminScopeType         string         `json:"adminScopeType"`
-	IsPasswordLoginAllowed bool           `json:"isPasswordLoginAllowed"`
-	Name                   string         `json:"name"`
-}
-
-type SuccessCreatedAdminUser struct {
-	Id                                 int                    `json:"id"`
-	LoginName                          string                 `json:"loginName"`
-	UserName                           string                 `json:"userName"`
-	Email                              string                 `json:"email"`
-	Password                           string                 `json:"password"`
-	Role                               map[string]interface{} `json:"role"`
-	AdminScopescopeGroupMemberEntities []string               `json:"adminScopescopeGroupMemberEntities"`
-	AdminScopeType                     string                 `json:"adminScopeType"`
-	PwdLastModifiedTime                int                    `json:"pwdLastModifiedTime"`
-	Name                               string                 `json:"name"`
-}
-
 func CreateAdminUsers(
 	role_name string,
 	login_name string,
@@ -104,7 +70,7 @@ func CreateAdminUsers(
 	resp_byte, _ := ioutil.ReadAll(resp.Body)
 	var message string
 	if resp.StatusCode == 200 {
-		var adminuser SuccessCreatedAdminUser
+		var adminuser SuccessResultOfCreatedAdminUser
 		json.Unmarshal(resp_byte, &adminuser)
 		message = "Success: " + adminuser.LoginName + " is created."
 	} else {

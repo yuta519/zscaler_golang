@@ -19,59 +19,6 @@ func endpoint_rul_categories(is_full bool) string {
 	return endpoint
 }
 
-// type OptAllUrlCategories struct {
-// 	IsUrls                             bool
-// 	IsDbCategorizedUrls                bool
-// 	IsCustomCateogry                   bool
-// 	IsEditable                         bool
-// 	IsDescription                      bool
-// 	IsType                             bool
-// 	IsVal                              bool
-// 	IsCustomUrlsCount                  bool
-// 	IsUrlsRetainingParentCategoryCount bool
-// }
-
-// type optionAll func(*OptAllUrlCategories)
-
-// func OptionAllUrlCategories(
-// 	is_url bool,
-// 	is_db_categorizedUrls bool,
-// 	IsCustomCateogry
-// 	IsEditable
-// 	IsDescription
-// 	IsType
-// 	IsVal
-// 	IsCustomUrlsCount
-// 	IsUrlsRetainingParentCategoryCount
-
-// ) {
-// 	return func(opt *OoptionAll) {
-// 		opt.IsUrls                            =
-// 		opt.IsDbCategorizedUrls               =
-// 		opt.IsCustomCateogry                  =
-// 		opt.IsEditable                        =
-// 		opt.IsDescription                     =
-// 		opt.IsType                            =
-// 		opt.IsVal                             =
-// 		opt.IsCustomUrlsCount                 =
-// 		opt.IsUrlsRetainingParentCategoryCount=
-// 	}
-// }
-
-type UrlCategory struct {
-	Id                               string   `json:"id"`
-	ConfiguredName                   string   `json:"configuredName"`
-	Urls                             []string `json:"urls"`
-	DbCategorizedUrls                []string `json:"dbCategorizedUrls"`
-	CustomCateogry                   bool     `json:"customCateogry"`
-	Editable                         bool     `json:"editable"`
-	Description                      string   `json:"description"`
-	Type                             string   `json:"Type"`
-	Val                              int      `json:"val"`
-	CustomUrlsCount                  int      `json:"customUrlsCount"`
-	UrlsRetainingParentCategoryCount int      `json:"urlsRetainingParentCategoryCount"`
-}
-
 func FetchAllUrlCategories() []UrlCategory {
 	session_id := Login()
 	is_full := true
@@ -94,6 +41,7 @@ func FetchAllUrlCategories() []UrlCategory {
 }
 
 func FetchLightWeightUrlCategories() []byte {
+
 	session_id := Login()
 	is_full := false
 	response := GetApi(endpoint_rul_categories(is_full), session_id)

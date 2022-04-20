@@ -5,7 +5,9 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+
 	"zscaler_golang/config"
+	"zscaler_golang/pkg/zia/auth"
 )
 
 func FetchAllNetworkServices() string {
@@ -13,7 +15,7 @@ func FetchAllNetworkServices() string {
 	reference, _ := url.Parse("/api/v1/networkServices")
 	endpoint := url_base.ResolveReference(reference).String()
 
-	session_id := Login()
+	session_id := auth.Login()
 	req, _ := http.NewRequest("GET", endpoint, nil)
 	req.Header.Set("content-type", "application/json")
 	req.Header.Set("cache-control", "no-cache")
@@ -24,7 +26,7 @@ func FetchAllNetworkServices() string {
 	if err != nil {
 		fmt.Println(err)
 	}
-	Logout()
+	auth.Logout()
 	byteArray, _ := ioutil.ReadAll(resp.Body)
 	return string(byteArray)
 

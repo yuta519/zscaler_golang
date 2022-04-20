@@ -1,4 +1,4 @@
-package pkg
+package auth
 
 import (
 	"bytes"
@@ -10,6 +10,13 @@ import (
 	"zscaler_golang/auth"
 	"zscaler_golang/config"
 )
+
+type ApiCredential struct {
+	APIKey    string `json:"apiKey"`
+	Username  string `json:"username"`
+	Password  string `json:"password"`
+	Timestamp string `json:"timestamp"`
+}
 
 func Login() string {
 	var session_id string

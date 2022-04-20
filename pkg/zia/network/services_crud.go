@@ -1,26 +1,22 @@
 package pkg
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+
 	"zscaler_golang/config"
+	"zscaler_golang/pkg/zia/auth"
 )
 
-func LookupUrlCategory(tareget_urls []string) string {
-	session_id := Login()
-
+func FetchAllNetworkServices() string {
 	url_base, _ := url.Parse("https://" + config.Config.Hostname)
-	reference, _ := url.Parse("/api/v1/urlLookup")
+	reference, _ := url.Parse("/api/v1/networkServices")
 	endpoint := url_base.ResolveReference(reference).String()
 
-	payload := tareget_urls
-	payload_json, _ := json.Marshal(payload)
-
-	req, _ := http.NewRequest("POST", endpoint, bytes.NewBuffer(payload_json))
+	session_id := auth.Login()
+	req, _ := http.NewRequest("GET", endpoint, nil)
 	req.Header.Set("content-type", "application/json")
 	req.Header.Set("cache-control", "no-cache")
 	req.Header.Set("cookie", session_id)
@@ -30,7 +26,8 @@ func LookupUrlCategory(tareget_urls []string) string {
 	if err != nil {
 		fmt.Println(err)
 	}
-	Logout()
+	auth.Logout()
 	byteArray, _ := ioutil.ReadAll(resp.Body)
 	return string(byteArray)
+
 }

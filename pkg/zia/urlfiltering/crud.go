@@ -8,8 +8,27 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+
 	"zscaler_golang/config"
+	"zscaler_golang/pkg/infra"
+	"zscaler_golang/pkg/zia/auth"
 )
+
+type CreateUrlFilterRuleParameter struct {
+	AccessControl       string        `json:"accessControl"`
+	Name                string        `json:"name"`
+	Order               int           `json:"order"`
+	Protocols           []string      `json:"protocols"`
+	Users               []interface{} `json:"users"`
+	UrlCategories       []string      `json:"urlCategories"`
+	State               string        `json:"state"`
+	Rank                int           `json:"rank"`
+	RequestMethods      []string      `json:"requestMethods"`
+	BlockOverride       bool          `json:"blockOverride"`
+	EnforceTimeValidity bool          `json:"enforceTimeValidity"`
+	CbiProfileId        int           `json:"cbiProfileId"`
+	Action              string        `json:"action"`
+}
 
 type UrlFilteringRule struct {
 	Id        int      `json:"id"`
@@ -21,22 +40,22 @@ type UrlFilteringRule struct {
 }
 
 func FetchAllUrlFilteringRules() {
-	session_id := Login()
+	session_id := auth.Login()
 	url_base, _ := url.Parse("https://" + config.Config.Hostname)
 	reference, _ := url.Parse("/api/v1/urlFilteringRules")
 	endpoint := url_base.ResolveReference(reference).String()
-	response := GetApi(endpoint, session_id)
-	Logout()
+	response := infra.GetApi(endpoint, session_id)
+	auth.Logout()
 	fmt.Println(string(response))
 }
 
 func FetchSpecifiedUrlFilteringRule() UrlFilteringRule {
-	// session_id := Login()
+	// session_id := auth.Login()
 	// url_base, _ := url.Parse("https://" + config.Config.Hostname)
 	// reference, _ := url.Parse("/api/v1/urlFilteringRules")
 	// endpoint := url_base.ResolveReference(reference).String()
 	// response := GetApi(endpoint, session_id)
-	// Logout()
+	// auth.Logout()
 
 	var rule UrlFilteringRule
 	return rule
@@ -57,7 +76,7 @@ func CreateUrlFilteringRule(
 	cbi_profile_id int,
 	action string,
 ) {
-	session_id := Login()
+	session_id := auth.Login()
 	url_base, _ := url.Parse("https://" + config.Config.Hostname)
 	reference, _ := url.Parse("/api/v1/urlFilteringRules")
 	endpoint := url_base.ResolveReference(reference).String()
@@ -135,7 +154,7 @@ func CreateUrlFilteringRule(
 	if err != nil {
 		fmt.Println(err)
 	}
-	Logout()
+	auth.Logout()
 
 	// byte_response, _ := ioutil.ReadAll(response.Body)
 

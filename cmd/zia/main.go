@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"zscaler_golang/pkg"
+	"zscaler_golang/pkg/zia/admin"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	// fmt.Print(adminusers)
 
 	// Show Admin Users
-	// fmt.Println(pkg.FetchAllNetworkServices())
+	fmt.Println(admin.FetchAllAdminRoles())
 
 	// Show all url categories name
 	// urlcategories := pkg.FetchAllUrlCategories()
@@ -30,9 +30,10 @@ func main() {
 	// pkg.FetchAllUrlFilteringRules()
 
 	// Show url lookup information
-	target_urls := []string{"aaa.com", "softbank.com"}
-	category := pkg.LookupUrlCategory(target_urls)
-	fmt.Print(category)
+	// target_urls := []string{"aaa.com", "softbank.com"}
+
+	// category := urlcategory.LookupUrlCategory(target_urls)
+	// fmt.Print(category)
 
 	// Create New URL Filtering Rule
 	// pkg.CreateUrlFilteringRule(

@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"strconv"
 	"time"
-	"zscaler_golang/config"
+
+	"zscaler_golang/pkg/zia/config"
 )
 
 type AuthPrepare struct {

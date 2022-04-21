@@ -7,8 +7,9 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+
 	"zscaler_golang/auth"
-	"zscaler_golang/config"
+	"zscaler_golang/pkg/zia/config"
 )
 
 type ApiCredential struct {

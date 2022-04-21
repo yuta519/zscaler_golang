@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"net/url"
 
-	"zscaler_golang/config"
 	"zscaler_golang/pkg/zia/auth"
+	"zscaler_golang/pkg/zia/config"
 )
 
 func LookupUrlCategory(tareget_urls []string) string {

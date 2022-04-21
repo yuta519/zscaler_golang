@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net/url"
 
-	"zscaler_golang/config"
 	"zscaler_golang/pkg/infra"
 	"zscaler_golang/pkg/zia/auth"
+	"zscaler_golang/pkg/zia/config"
 )
 
 type UrlCategory struct {

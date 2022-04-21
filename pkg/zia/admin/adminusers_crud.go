@@ -15,8 +15,16 @@ import (
 )
 
 type AdminUser struct {
-	Id        int    `json:"id"`
-	LoginName string `json:"loginName"`
+	Id                                 int                    `json:"id"`
+	LoginName                          string                 `json:"loginName"`
+	UserName                           string                 `json:"userName"`
+	Email                              string                 `json:"email"`
+	Password                           string                 `json:"password"`
+	Role                               map[string]interface{} `json:"role"`
+	AdminScopescopeGroupMemberEntities []string               `json:"adminScopescopeGroupMemberEntities"`
+	AdminScopeType                     string                 `json:"adminScopeType"`
+	PwdLastModifiedTime                int                    `json:"pwdLastModifiedTime"`
+	Name                               string                 `json:"name"`
 }
 
 type CreateAdminUserParameter struct {
@@ -55,7 +63,6 @@ func FetchAllAdminUsers() []AdminUser {
 	var adminUsers []AdminUser
 	json.Unmarshal(response, &adminUsers)
 	return adminUsers
-
 }
 
 func CreateAdminUsers(
@@ -117,7 +124,7 @@ func CreateAdminUsers(
 	resp_byte, _ := ioutil.ReadAll(resp.Body)
 	var message string
 	if resp.StatusCode == 200 {
-		var adminuser SuccessResultOfCreatedAdminUser
+		var adminuser AdminUser
 		json.Unmarshal(resp_byte, &adminuser)
 		message = "Success: " + adminuser.LoginName + " is created."
 	} else {

@@ -24,9 +24,9 @@ func init() {
 	}
 
 	Config = ConfigList{
-		UserName: cfg.Section("credential").Key("USERNAME").String(),
-		Password: cfg.Section("credential").Key("PASSWORD").String(),
-		Hostname: cfg.Section("credential").Key("HOSTNAME").String(),
-		ApiKey:   cfg.Section("credential").Key("APIKEY").String(),
+		UserName: cfg.Section("zia").Key("USERNAME").String(),
+		Password: cfg.Section("zia").Key("PASSWORD").String(),
+		Hostname: cfg.Section("zia").Key("HOSTNAME").String(),
+		ApiKey:   cfg.Section("zia").Key("APIKEY").String(),
 	}
 }

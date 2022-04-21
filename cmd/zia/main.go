@@ -20,7 +20,8 @@ func main() {
 	// fmt.Print(adminusers)
 
 	// Show Admin Users
-	fmt.Println(admin.FetchAllAdminRoles())
+	// fmt.Println(admin.FetchAllAdminRoles())
+	fmt.Println(admin.FetchAllAdminUsers())
 
 	// Show all url categories name
 	// urlcategories := pkg.FetchAllUrlCategories()

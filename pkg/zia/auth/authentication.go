@@ -19,12 +19,12 @@ type ApiCredential struct {
 	Timestamp string `json:"timestamp"`
 }
 
-type AuthPrepare struct {
+type authPrepare struct {
 	ObfuscatedApiKey string
 	Timestamp        int
 }
 
-var auth AuthPrepare
+var auth authPrepare
 
 func init() {
 	unix_now := time.Now().UnixNano() / int64(time.Millisecond)
@@ -45,7 +45,7 @@ func init() {
 		obfuscatedApiKey += string(apikey[index+2])
 	}
 
-	auth = AuthPrepare{
+	auth = authPrepare{
 		ObfuscatedApiKey: obfuscatedApiKey,
 		Timestamp:        timestamp,
 	}

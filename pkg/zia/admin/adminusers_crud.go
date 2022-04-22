@@ -15,16 +15,28 @@ import (
 )
 
 type AdminUser struct {
-	Id                                 int                    `json:"id"`
-	LoginName                          string                 `json:"loginName"`
-	UserName                           string                 `json:"userName"`
-	Email                              string                 `json:"email"`
-	Password                           string                 `json:"password"`
-	Role                               map[string]interface{} `json:"role"`
-	AdminScopescopeGroupMemberEntities []string               `json:"adminScopescopeGroupMemberEntities"`
-	AdminScopeType                     string                 `json:"adminScopeType"`
-	PwdLastModifiedTime                int                    `json:"pwdLastModifiedTime"`
-	Name                               string                 `json:"name"`
+	Id                          int                    `json:"id"`
+	LoginName                   string                 `json:"loginName"`
+	UserName                    string                 `json:"userName"`
+	Email                       string                 `json:"email"`
+	Role                        AdminUserRole          `json:"role"`
+	Comments                    string                 `json:"comments"`
+	AdminScope                  map[string]interface{} `json:"adminScop"`
+	IsNoneEditable              bool                   `json:"isNonEditable"`
+	Disabled                    bool                   `json:"disabled"`
+	IsAuditor                   bool                   `json:"isAuditor"`
+	Password                    string                 `json:"password"`
+	IsPasswordLoginAllowed      bool                   `json:"isPasswordLoginAllowed"`
+	IsSecurityReportCommEnabled bool                   `json:"isSecurityReportCommEnabled"`
+	IsPasswordExpired           bool                   `json:"isPasswordExpired"`
+	IsExecMobileAppEnabled      bool                   `json:"isExecMobileAppEnabled"`
+	ExecMobileAppTokens         map[string]interface{} `json:"ExecMobileAppTokens"`
+}
+
+type AdminUserRole struct {
+	Id         int               `json:"id"`
+	Name       string            `json:"name"`
+	Extensions map[string]string `json:"extensions"`
 }
 
 type CreateAdminUserParameter struct {

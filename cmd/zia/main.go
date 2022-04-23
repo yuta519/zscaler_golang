@@ -2,8 +2,43 @@ package main
 
 import (
 	"fmt"
+	"os"
+
 	"zscaler_golang/pkg/zia/admin"
+	"zscaler_golang/pkg/zia/config"
 )
+
+const (
+	name     = "zia_golang"
+	version  = "0.0.1"
+	revision = "HEAD"
+)
+
+func usage() {
+	// 	fmt.Fprint(os.Stderr, `Tasks:
+	//   goreman check                      # Show entries in Procfile
+	//   goreman help [TASK]                # Show this help
+	//   goreman export [FORMAT] [LOCATION] # Export the apps to another process
+	//                                        (upstart)
+	//   goreman run COMMAND [PROCESS...]   # Run a command
+	//                                        start
+	//                                        stop
+	//                                        stop-all
+	//                                        restart
+	//                                        restart-all
+	//                                        list
+	//                                        status
+	//   goreman start [PROCESS]            # Start the application
+	//   goreman version                    # Display Goreman version
+	// Options:
+	// `)
+	// 	flag.PrintDefaults()
+	os.Exit(0)
+}
+
+func readConfg() {
+	fmt.Print(config.Config.ApiKey)
+}
 
 func main() {
 	// Create New Admin Users
@@ -21,6 +56,7 @@ func main() {
 
 	// Show Admin Users
 	// fmt.Println(admin.FetchAllAdminRoles())
+	// readConfg()
 	fmt.Println(admin.FetchAllAdminUsers())
 
 	// Show all url categories name

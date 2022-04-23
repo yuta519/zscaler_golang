@@ -77,12 +77,15 @@ func main() {
 
 	cmd := cfg.Args[0]
 	switch cmd {
-	case "p":
-		fmt.Print("hoge")
+	case "credential":
+		fmt.Print("username: ", cfg.UserName, "\n")
+		fmt.Print("cloud console: ", cfg.Hostname, "\n")
+		fmt.Print("password: *****", cfg.Password[6:], "\n")
+		fmt.Print("apikey: *****", cfg.ApiKey[8:], "\n")
 	case "adminuser":
 		if len(cfg.Args) < 2 {
-			fmt.Fprint(os.Stderr, "adminuser: Please specify sub command\n")
-			os.Exit(1)
+			fmt.Fprint(os.Stderr, "adminuser: Please specify sub command")
+			os.Exit(0)
 		}
 		if cfg.Args[1] == "ls" {
 			fmt.Println(admin.FetchAllAdminUsers())

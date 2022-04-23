@@ -15,7 +15,7 @@
 - ZIA API is not enabled initially, so you need send a support ticket.
 
 ### Go
-- Go 
+- Go
     - Version 1.6 or above
 - Library
     - gopkg.in/ini.v1
@@ -28,7 +28,7 @@
 1. Prepare ZIA credentiasl
 You need write your ZIA credential inforamtion at **config/config.ini**.
 ```
-[credential]
+[zia]
 USERNAME=yuta.kawamura@zscaler.net
 PASSWORD=IloveZscaler
 HOSTNAME=admin.zscaler.net

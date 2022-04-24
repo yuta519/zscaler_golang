@@ -7,6 +7,7 @@ import (
 
 	"zscaler_golang/pkg/zia/admin"
 	"zscaler_golang/pkg/zia/config"
+	"zscaler_golang/pkg/zia/urlcategory"
 )
 
 const (
@@ -89,6 +90,18 @@ func main() {
 		}
 		if cfg.Args[1] == "ls" {
 			fmt.Println(admin.FetchAllAdminUsers())
+		}
+	case "urlcategory":
+		if len(cfg.Args) < 2 {
+			fmt.Fprint(os.Stderr, "urlcategory: Please specify sub command")
+			os.Exit(0)
+		}
+		if cfg.Args[1] == "lookup" {
+			if len(cfg.Args) < 3 {
+				fmt.Fprint(os.Stderr, "lookup: Please input urls")
+				os.Exit(0)
+			}
+			fmt.Println(urlcategory.LookupUrlCategory(cfg.Args[2:]))
 		}
 	}
 }

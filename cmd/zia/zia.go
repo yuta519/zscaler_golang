@@ -17,29 +17,15 @@ const (
 )
 
 func usage() {
-	fmt.Fprint(os.Stderr, `Tasks:
-	zia adminuser [TASK]                # Show adminusers in Zscaler Internet Access
-	zia adminrole [TASK]                # Show adminroles in Zscaler Internet Access
+	fmt.Fprint(os.Stderr, `Commands:
+	zia credential                      # Show credential info placed in config.ini
+	zia adminuser COMMAND               # Run a command about adminusers
+										  ls
+	zia urlcategory COMMAND             # Run a command about urlcategory
+										  ls
+										  lookup [URLS]
 Options:
 `)
-
-	// 	fmt.Fprint(os.Stderr, `Tasks:
-	//   goreman check                      # Show entries in Procfile
-	//   goreman help [TASK]                # Show this help
-	//   goreman export [FORMAT] [LOCATION] # Export the apps to another process
-	//                                        (upstart)
-	//   goreman run COMMAND [PROCESS...]   # Run a command
-	//                                        start
-	//                                        stop
-	//                                        stop-all
-	//                                        restart
-	//                                        restart-all
-	//                                        list
-	//                                        status
-	//   goreman start [PROCESS]            # Start the application
-	//   goreman version                    # Display Goreman version
-	// Options:
-	// `)
 	flag.PrintDefaults()
 	os.Exit(0)
 }

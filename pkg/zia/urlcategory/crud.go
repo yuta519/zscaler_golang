@@ -58,7 +58,6 @@ func FetchAllUrlCategories() []UrlCategory {
 }
 
 func FetchLightWeightUrlCategories() []byte {
-
 	session_id := auth.Login()
 	is_full := false
 	response := infra.GetApi(endpoint_rul_categories(is_full), session_id)

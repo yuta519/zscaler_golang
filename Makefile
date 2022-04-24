@@ -7,4 +7,4 @@ test:
 	go test
 
 build-zia:
-	go build cmd/zia/zia.go
+	go build -o zia cmd/zia/main.go

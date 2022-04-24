@@ -102,6 +102,8 @@ func main() {
 				os.Exit(0)
 			}
 			fmt.Println(urlcategory.LookupUrlCategory(cfg.Args[2:]))
+		} else if cfg.Args[1] == "ls" {
+			fmt.Println(urlcategory.FetchAllUrlCategories())
 		}
 	}
 }

@@ -8,6 +8,7 @@ import (
 	"zscaler_golang/pkg/zia/admin"
 	"zscaler_golang/pkg/zia/config"
 	"zscaler_golang/pkg/zia/urlcategory"
+	"zscaler_golang/pkg/zia/urlfiltering"
 )
 
 const (
@@ -89,7 +90,15 @@ func main() {
 			}
 			fmt.Println(urlcategory.LookupUrlCategory(cfg.Args[2:]))
 		} else if cfg.Args[1] == "ls" {
-			fmt.Println(urlcategory.FetchAllUrlCategories())
+			fmt.Print(urlcategory.FetchAllUrlCategories())
+		}
+	case "urlfilter":
+		if len(cfg.Args) < 2 {
+			fmt.Fprint(os.Stderr, "urlfilter: Please specify sub command")
+			os.Exit(0)
+		}
+		if cfg.Args[1] == "ls" {
+			fmt.Print(urlfiltering.FetchAllUrlFilteringRules())
 		}
 	}
 }

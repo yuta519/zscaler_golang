@@ -1,4 +1,4 @@
-package pkg
+package urlfiltering
 
 import (
 	"bytes"
@@ -39,14 +39,14 @@ type UrlFilteringRule struct {
 	// TODO: later...
 }
 
-func FetchAllUrlFilteringRules() {
+func FetchAllUrlFilteringRules() string {
 	session_id := auth.Login()
 	url_base, _ := url.Parse("https://" + config.Config.Hostname)
 	reference, _ := url.Parse("/api/v1/urlFilteringRules")
 	endpoint := url_base.ResolveReference(reference).String()
 	response := infra.GetApi(endpoint, session_id)
 	auth.Logout()
-	fmt.Println(string(response))
+	return string(response)
 }
 
 func FetchSpecifiedUrlFilteringRule() UrlFilteringRule {

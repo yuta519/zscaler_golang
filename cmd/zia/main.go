@@ -7,6 +7,7 @@ import (
 
 	"zscaler_golang/pkg/zia/admin"
 	"zscaler_golang/pkg/zia/config"
+	"zscaler_golang/pkg/zia/firewall"
 	"zscaler_golang/pkg/zia/urlcategory"
 	"zscaler_golang/pkg/zia/urlfiltering"
 )
@@ -99,6 +100,18 @@ func main() {
 		}
 		if cfg.Args[1] == "ls" {
 			fmt.Print(urlfiltering.FetchAllUrlFilteringRules())
+		}
+	case "firewall":
+		if len(cfg.Args) < 2 {
+			fmt.Fprint(os.Stderr, "firewall: Please specify sub command")
+			os.Exit(0)
+		}
+		if cfg.Args[1] == "ls" {
+			if len(cfg.Args) > 3 && cfg.Args[2] == "--id" {
+				fmt.Print(firewall.FetchSpecificFwRule(cfg.Args[3]))
+			} else {
+				fmt.Print(firewall.FetchAllFwRules())
+			}
 		}
 	}
 }

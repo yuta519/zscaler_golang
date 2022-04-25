@@ -6,5 +6,5 @@ install:
 test:
 	go test
 
-build-zia:
+build:
 	go build -o zia cmd/zia/main.go

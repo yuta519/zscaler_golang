@@ -21,12 +21,21 @@ const (
 func usage() {
 	fmt.Fprint(os.Stderr, `Commands:
 	zia credential                      # Show credential info placed in config.ini
+
 	zia adminuser COMMAND               # Run a command about adminusers
-										  ls
+	                                      ls
+
+	zia adminrole COMMAND               # Run a command about adminusers
+	                                      ls
+
 	zia urlcategory COMMAND             # Run a command about urlcategory
-										  ls
-										  lookup [URLS]
-Options:
+	                                      ls
+	                                      lookup [URLS]
+
+	zia firewall COMMAND                 # Run a command about firewall
+	                                      ls
+	                                     	--id [ID]
+	                                     	--all
 `)
 	flag.PrintDefaults()
 	os.Exit(0)
@@ -79,6 +88,14 @@ func main() {
 		if cfg.Args[1] == "ls" {
 			fmt.Println(admin.FetchAllAdminUsers())
 		}
+	case "adminrole":
+		if len(cfg.Args) < 2 {
+			fmt.Fprint(os.Stderr, "adminrole: Please specify sub command")
+			os.Exit(0)
+		}
+		if cfg.Args[1] == "ls" {
+			fmt.Println(admin.FetchAllAdminRoles())
+		}
 	case "urlcategory":
 		if len(cfg.Args) < 2 {
 			fmt.Fprint(os.Stderr, "urlcategory: Please specify sub command")
@@ -109,17 +126,15 @@ func main() {
 		if cfg.Args[1] == "ls" {
 			if len(cfg.Args) > 3 && cfg.Args[2] == "--id" {
 				fmt.Print(firewall.FetchSpecificFwRule(cfg.Args[3]))
-			} else {
+			} else if len(cfg.Args) > 2 && cfg.Args[2] == "--all" {
 				fmt.Print(firewall.FetchAllFwRules())
+			} else {
+				// fmt.Print(firewall.FetchAllFwRules())
 			}
 		}
 	}
 }
 
-// fmt.Print(cmd)
-// fmt.Print(a)
-// fmt.Print(&a)
-// fmt.Print(*a)
 // Create New Admin Users
 // adminusers := pkg.CreateAdminUsers(
 // 	"Super Admin",
@@ -132,24 +147,6 @@ func main() {
 // 	"Yuta Kawamura",
 // )
 // fmt.Print(adminusers)
-
-// Show Admin Users
-// fmt.Println(admin.FetchAllAdminRoles())
-// readConfg()
-// fmt.Println(admin.FetchAllAdminUsers())
-
-// Show all url categories name
-// urlcategories := pkg.FetchAllUrlCategories()
-// fmt.Print(urlcategories)
-
-// Show url filtering policies
-// pkg.FetchAllUrlFilteringRules()
-
-// Show url lookup information
-// target_urls := []string{"aaa.com", "softbank.com"}
-
-// category := urlcategory.LookupUrlCategory(target_urls)
-// fmt.Print(category)
 
 // Create New URL Filtering Rule
 // pkg.CreateUrlFilteringRule(

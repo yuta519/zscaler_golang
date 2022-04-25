@@ -87,10 +87,6 @@ func CreateUrlFilteringRule(
 	payload.Order = order
 	payload.Protocols = protocols
 	payload.Users = users
-	// payload.Uers = make([]interface{},
-	// 	"id":   43270458,
-	// 	"name": "Aoyama Naoki(naoki.aoyama02@casb89.onmicrosoft.com)",
-	// })
 	payload.UrlCategories = url_categories
 	payload.State = state
 	payload.Rank = rank
@@ -116,11 +112,6 @@ func CreateUrlFilteringRule(
 	// 	"TUNNEL_RULE",
 	// }
 	// payload.Users = nil
-	// // payload.Uers = make([]interface{},
-	// // 	"id":   43270458,
-	// // 	"name": "Aoyama Naoki(naoki.aoyama02@casb89.onmicrosoft.com)",
-	// // })
-	// payload.UrlCategories = []string{"CUSTOM_06", "CUSTOM_09"}
 	// payload.State = "ENABLED"
 	// payload.Rank = 0
 	// payload.RequestMethods = []string{
@@ -175,11 +166,6 @@ func CreateUrlFilteringRule(
 	// 		"SSL_RULE",
 	// 		"TUNNEL_RULE"
 	// 	],
-	// 	"users":[
-	// 		{
-	// 			"id":43270458,
-	// 			"name":"Aoyama Naoki(naoki.aoyama02@casb89.onmicrosoft.com)"
-	// 		}
 	// 	],
 	// 	"urlCategories":[
 	// 		"CUSTOM_06",

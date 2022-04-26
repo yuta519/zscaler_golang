@@ -8,6 +8,7 @@ import (
 	"zscaler_golang/pkg/zia/admin"
 	"zscaler_golang/pkg/zia/config"
 	"zscaler_golang/pkg/zia/firewall"
+	"zscaler_golang/pkg/zia/network"
 	"zscaler_golang/pkg/zia/urlcategory"
 	"zscaler_golang/pkg/zia/urlfiltering"
 )
@@ -128,8 +129,16 @@ func main() {
 				fmt.Print(firewall.FetchSpecificFwRule(cfg.Args[3]))
 			} else if len(cfg.Args) > 2 && cfg.Args[2] == "--all" {
 				fmt.Print(firewall.FetchAllFwRules())
-			} else {
-				// fmt.Print(firewall.FetchAllFwRules())
+			}
+		}
+	case "network":
+		if len(cfg.Args) < 2 {
+			fmt.Fprint(os.Stderr, "network: Please specify sub command")
+			os.Exit(0)
+		}
+		if cfg.Args[1] == "ipdst" {
+			if len(cfg.Args) > 2 && cfg.Args[2] == "ls" {
+				fmt.Print(network.FetchIpDstGroups())
 			}
 		}
 	}

@@ -68,8 +68,8 @@ func FetchAllAdminUsers() []AdminUser {
 	adminuserRef, _ := url.Parse("/api/v1/adminUsers")
 	adminuserEdpoint := baseUrl.ResolveReference(adminuserRef).String()
 
-	session_id := auth.Login()
-	response := infra.GetApi(adminuserEdpoint, session_id)
+	sessionId := auth.Login()
+	response := infra.GetApi(adminuserEdpoint, sessionId)
 	auth.Logout()
 
 	var adminUsers []AdminUser

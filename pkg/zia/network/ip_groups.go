@@ -1,18 +1,30 @@
 package network
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
-
 	"zscaler_golang/pkg/zia/auth"
 	"zscaler_golang/pkg/zia/config"
 )
 
-func FetchAllNetworkServices() string {
+type IpGroup struct {
+	Id             int      `json:"id"`
+	Name           string   `json:"name"`
+	Type           string   `json:"type"`
+	Addresses      []string `json:"addresses"`
+	Description    string   `json:"description"`
+	CreatorContext string   `json:"creatorContext"`
+	Countries      []string `json:"countries"`
+	UrlCategories  []string `json:"urlCategories"`
+	IpAddresses    []string `json:"ipAddresses"`
+}
+
+func FetchIpDstGroups() string {
 	baseUrl, _ := url.Parse("https://" + config.Config.Hostname)
-	reference, _ := url.Parse("/api/v1/networkServices")
+	reference, _ := url.Parse("/api/v1/ipDestinationGroups")
 	endpoint := baseUrl.ResolveReference(reference).String()
 
 	sessionId := auth.Login()
@@ -28,5 +40,8 @@ func FetchAllNetworkServices() string {
 	}
 	auth.Logout()
 	byteArray, _ := ioutil.ReadAll(resp.Body)
+	var ipGroups []IpGroup
+	json.Unmarshal(byteArray, &ipGroups)
+	// fmt.Print(ipGroups)
 	return string(byteArray)
 }

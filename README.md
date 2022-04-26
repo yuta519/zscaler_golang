@@ -14,11 +14,13 @@
 - You need ZIA API key, Adminuser ID and Password.
 - ZIA API is not enabled initially, so you need send a support ticket.
 
-### Go
+### Stacks
 - Go
-    - Version 1.6 or above
+    - Version 1.8 or above
 - Library
     - gopkg.in/ini.v1
+- API
+  - Zscaler Internet Access
 
 
 
@@ -35,4 +37,32 @@ HOSTNAME=admin.zscaler.net
 APIKEY=XXXXXXXXXXXXXXXXXXXXX
 ```
 
-2. Using codes under ***pkg/XXX.go*** like src/main.go .
+2. Build main.go
+Run below command.
+> make build
+
+After running, you could find `zia` file on your current directory.
+
+3. Using `zia`
+You could try some `zia` command. Just run below, you can see usages.
+> ./zia
+
+```
+Commands:
+        zia credential                      # Show credential info placed in config.ini
+
+        zia adminuser COMMAND               # Run a command about adminusers
+                                              ls
+
+        zia adminrole COMMAND               # Run a command about adminusers
+                                              ls
+
+        zia urlcategory COMMAND             # Run a command about urlcategory
+                                              ls
+                                              lookup [URLS]
+
+        zia firewall COMMAND                 # Run a command about firewall
+                                              ls
+                                                --id [ID]
+                                                --all
+```

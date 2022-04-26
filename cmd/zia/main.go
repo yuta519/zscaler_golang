@@ -140,6 +140,10 @@ func main() {
 			if len(cfg.Args) > 2 && cfg.Args[2] == "ls" {
 				fmt.Print(network.FetchIpDstGroups())
 			}
+		} else if cfg.Args[1] == "ipsrc" {
+			if len(cfg.Args) > 2 && cfg.Args[2] == "ls" {
+				fmt.Print(network.FetchIpSrcGroups())
+			}
 		}
 	}
 }

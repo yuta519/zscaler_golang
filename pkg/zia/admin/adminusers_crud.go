@@ -19,7 +19,7 @@ type AdminUser struct {
 	LoginName                   string                 `json:"loginName"`
 	UserName                    string                 `json:"userName"`
 	Email                       string                 `json:"email"`
-	Role                        AdminUserRole          `json:"role"`
+	Role                        role                   `json:"role"`
 	Comments                    string                 `json:"comments"`
 	AdminScope                  map[string]interface{} `json:"adminScop"`
 	IsNoneEditable              bool                   `json:"isNonEditable"`
@@ -33,7 +33,7 @@ type AdminUser struct {
 	ExecMobileAppTokens         map[string]interface{} `json:"ExecMobileAppTokens"`
 }
 
-type AdminUserRole struct {
+type role struct {
 	Id         int               `json:"id"`
 	Name       string            `json:"name"`
 	Extensions map[string]string `json:"extensions"`

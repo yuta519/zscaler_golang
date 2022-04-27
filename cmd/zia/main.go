@@ -116,8 +116,10 @@ func main() {
 			fmt.Fprint(os.Stderr, "urlfilter: Please specify sub command")
 			os.Exit(0)
 		}
-		if cfg.Args[1] == "ls" {
+		if cfg.Args[1] == "ls" && len(cfg.Args) == 2 {
 			fmt.Print(urlfiltering.FetchAllUrlFilteringRules())
+		} else if cfg.Args[1] == "ls" && cfg.Args[2] == "--id" {
+			fmt.Print(urlfiltering.FetchSpecifiedUrlFilteringRule(cfg.Args[3]))
 		}
 	case "firewall":
 		if len(cfg.Args) < 2 {

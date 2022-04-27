@@ -31,33 +31,42 @@ type CreateUrlFilterRuleParameter struct {
 }
 
 type UrlFilteringRule struct {
-	Id        int      `json:"id"`
-	Name      string   `json:"name"`
-	Order     int      `json:"order"`
-	Protocol  []string `json:"protocol"`
-	Locations []string `json:"locations"`
-	// TODO: later...
+	Id                  int      `json:"id"`
+	AccessControl       string   `json:"accessControl"`
+	Name                string   `json:"name"`
+	Order               int      `json:"order"`
+	Protocols           []string `json:"protocols"`
+	UrlCategories       []string `json:"urlCategories"`
+	State               string   `json:"state"`
+	Rank                int      `json:"rank"`
+	RequestMethods      []string `json:"requestMethods"`
+	BlockOverride       string   `json:"blockOverride"`
+	Description         string   `json:"description"`
+	EnforceTimeValidity string   `json:"enforceTimeValidity"`
+	CbiProfileId        int      `json:"cbiProfileId"`
+	Action              string   `json:"action"`
 }
 
 func FetchAllUrlFilteringRules() string {
-	session_id := auth.Login()
-	url_base, _ := url.Parse("https://" + config.Config.Hostname)
+	sessionId := auth.Login()
+	baseUrl, _ := url.Parse("https://" + config.Config.Hostname)
 	reference, _ := url.Parse("/api/v1/urlFilteringRules")
-	endpoint := url_base.ResolveReference(reference).String()
-	response := infra.GetApi(endpoint, session_id)
+	endpoint := baseUrl.ResolveReference(reference).String()
+	response := infra.GetApi(endpoint, sessionId)
 	auth.Logout()
 	return string(response)
 }
 
-func FetchSpecifiedUrlFilteringRule() UrlFilteringRule {
-	// session_id := auth.Login()
-	// url_base, _ := url.Parse("https://" + config.Config.Hostname)
-	// reference, _ := url.Parse("/api/v1/urlFilteringRules")
-	// endpoint := url_base.ResolveReference(reference).String()
-	// response := GetApi(endpoint, session_id)
-	// auth.Logout()
+func FetchSpecifiedUrlFilteringRule(id string) UrlFilteringRule {
+	sessionId := auth.Login()
+	baseUrl, _ := url.Parse("https://" + config.Config.Hostname)
+	reference, _ := url.Parse("/api/v1/urlFilteringRules/" + id)
+	endpoint := baseUrl.ResolveReference(reference).String()
+	response := infra.GetApi(endpoint, sessionId)
+	auth.Logout()
 
 	var rule UrlFilteringRule
+	json.Unmarshal(response, &rule)
 	return rule
 }
 

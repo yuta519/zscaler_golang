@@ -87,7 +87,7 @@ func main() {
 			os.Exit(0)
 		}
 		if cfg.Args[1] == "ls" {
-			fmt.Println(admin.FetchAllAdminUsers())
+			fmt.Printf("%+v\n", admin.FetchAllAdminUsers())
 		}
 	case "adminrole":
 		if len(cfg.Args) < 2 {
@@ -95,7 +95,7 @@ func main() {
 			os.Exit(0)
 		}
 		if cfg.Args[1] == "ls" {
-			fmt.Println(admin.FetchAllAdminRoles())
+			fmt.Printf("%+v\n", admin.FetchAllAdminRoles())
 		}
 	case "urlcategory":
 		if len(cfg.Args) < 2 {
@@ -107,9 +107,9 @@ func main() {
 				fmt.Fprint(os.Stderr, "lookup: Please input urls")
 				os.Exit(0)
 			}
-			fmt.Println(urlcategory.LookupUrlCategory(cfg.Args[2:]))
+			fmt.Printf("%+v\n", urlcategory.LookupUrlCategory(cfg.Args[2:]))
 		} else if cfg.Args[1] == "ls" {
-			fmt.Print(urlcategory.FetchAllUrlCategories())
+			fmt.Printf("%+v\n", urlcategory.FetchAllUrlCategories())
 		}
 	case "urlfilter":
 		if len(cfg.Args) < 2 {
@@ -117,9 +117,9 @@ func main() {
 			os.Exit(0)
 		}
 		if cfg.Args[1] == "ls" && len(cfg.Args) == 2 {
-			fmt.Print(urlfiltering.FetchAllUrlFilteringRules())
+			fmt.Printf("%+v\n", urlfiltering.FetchAllUrlFilteringRules())
 		} else if cfg.Args[1] == "ls" && cfg.Args[2] == "--id" {
-			fmt.Print(urlfiltering.FetchSpecifiedUrlFilteringRule(cfg.Args[3]))
+			fmt.Printf("%+v\n", urlfiltering.FetchSpecifiedUrlFilteringRule(cfg.Args[3]))
 		}
 	case "firewall":
 		if len(cfg.Args) < 2 {
@@ -128,9 +128,9 @@ func main() {
 		}
 		if cfg.Args[1] == "ls" {
 			if len(cfg.Args) > 3 && cfg.Args[2] == "--id" {
-				fmt.Print(firewall.FetchSpecificFwRule(cfg.Args[3]))
+				fmt.Printf("%+v\n", firewall.FetchSpecificFwRule(cfg.Args[3]))
 			} else if len(cfg.Args) > 2 && cfg.Args[2] == "--all" {
-				fmt.Print(firewall.FetchAllFwRules())
+				fmt.Printf("%+v\n", firewall.FetchAllFwRules())
 			}
 		}
 	case "network":
@@ -140,11 +140,11 @@ func main() {
 		}
 		if cfg.Args[1] == "ipdst" {
 			if len(cfg.Args) > 2 && cfg.Args[2] == "ls" {
-				fmt.Print(network.FetchIpDstGroups())
+				fmt.Printf("%+v\n", network.FetchIpDstGroups())
 			}
 		} else if cfg.Args[1] == "ipsrc" {
 			if len(cfg.Args) > 2 && cfg.Args[2] == "ls" {
-				fmt.Print(network.FetchIpSrcGroups())
+				fmt.Printf("%+v\n", network.FetchIpSrcGroups())
 			}
 		}
 	}

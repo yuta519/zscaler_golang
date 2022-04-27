@@ -47,14 +47,17 @@ type UrlFilteringRule struct {
 	Action              string   `json:"action"`
 }
 
-func FetchAllUrlFilteringRules() string {
+func FetchAllUrlFilteringRules() []UrlFilteringRule {
 	sessionId := auth.Login()
 	baseUrl, _ := url.Parse("https://" + config.Config.Hostname)
 	reference, _ := url.Parse("/api/v1/urlFilteringRules")
 	endpoint := baseUrl.ResolveReference(reference).String()
 	response := infra.GetApi(endpoint, sessionId)
 	auth.Logout()
-	return string(response)
+
+	var rules []UrlFilteringRule
+	json.Unmarshal(response, &rules)
+	return rules
 }
 
 func FetchSpecifiedUrlFilteringRule(id string) UrlFilteringRule {

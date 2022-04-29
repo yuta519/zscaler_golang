@@ -33,6 +33,11 @@ func usage() {
 	                                      ls
 	                                      lookup [URLS]
 
+	zia urlfilter COMMAND                 # Run a command about firewall
+	                                      ls
+	                                     	--id [ID]
+	                                     	--all
+
 	zia firewall COMMAND                 # Run a command about firewall
 	                                      ls
 	                                     	--id [ID]

@@ -24,6 +24,8 @@ func usage() {
 	fmt.Fprint(os.Stderr, `Commands:
 	zia credential                      # Show credential info placed in config.ini
 
+	zia auth exclude                    # Show exempted urls of cookie auth login
+
 	zia adminuser COMMAND               # Run a command about adminusers
 	                                      ls
 
@@ -43,6 +45,8 @@ func usage() {
 	                                      ls
 	                                     	--id [ID]
 	                                     	--all
+
+	zia network COMMAND                 # Run a command about network
 `)
 	flag.PrintDefaults()
 	os.Exit(0)

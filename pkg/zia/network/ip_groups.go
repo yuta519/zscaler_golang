@@ -42,7 +42,6 @@ func FetchIpDstGroups() string {
 	byteArray, _ := ioutil.ReadAll(resp.Body)
 	var ipGroups []IpGroup
 	json.Unmarshal(byteArray, &ipGroups)
-	// fmt.Print(ipGroups)
 	return string(byteArray)
 }
 
@@ -66,6 +65,5 @@ func FetchIpSrcGroups() string {
 	byteArray, _ := ioutil.ReadAll(resp.Body)
 	var ipGroups []IpGroup
 	json.Unmarshal(byteArray, &ipGroups)
-	// fmt.Print(ipGroups)
 	return string(byteArray)
 }

@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"time"
 
+	"zscaler_golang/pkg/infra"
 	"zscaler_golang/pkg/zia/config"
 )
 
@@ -86,4 +87,16 @@ func Logout() {
 	if err != nil {
 		fmt.Println("Request Error: ", err)
 	}
+}
+
+func FetchExemptedUrls() {
+	sessionId := Login()
+
+	base, _ := url.Parse("https://" + config.Config.Hostname)
+	reference, _ := url.Parse("/api/v1/authSettings/exemptedUrls")
+	endpoint := base.ResolveReference(reference).String()
+	response := infra.GetApi(endpoint, sessionId)
+	Logout()
+
+	fmt.Print(string(response))
 }

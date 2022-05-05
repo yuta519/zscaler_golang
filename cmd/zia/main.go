@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"zscaler_golang/pkg/zia/admin"
+	"zscaler_golang/pkg/zia/auth"
 	"zscaler_golang/pkg/zia/config"
 	"zscaler_golang/pkg/zia/firewall"
 	"zscaler_golang/pkg/zia/network"
@@ -31,7 +32,7 @@ func usage() {
 
 	zia urlcategory COMMAND             # Run a command about urlcategory
 	                                      ls
-	                                      lookup [URLS]
+	                                      lookup [URLS
 
 	zia urlfilter COMMAND                 # Run a command about firewall
 	                                      ls
@@ -86,6 +87,8 @@ func main() {
 		fmt.Print("cloud console: ", cfg.Hostname, "\n")
 		fmt.Print("password: *****", cfg.Password[6:], "\n")
 		fmt.Print("apikey: *****", cfg.ApiKey[8:], "\n")
+	case "auth":
+		auth.FetchExemptedUrls()
 	case "adminuser":
 		if len(cfg.Args) < 2 {
 			fmt.Fprint(os.Stderr, "adminuser: Please specify sub command")

@@ -1,14 +1,12 @@
 # Zscaler Golang
 
 ## What is this repository?
----
 
 - This repository is a library to use Zscaler API for GO.
 - I'm developing ZIA SDK for GO in accordance with [Zsclaer help page](https://help.zscaler.com/zia/api/)
 
 
 ## Prerequisite
----
 
 ### Zsclaer (ZIA)
 - You need ZIA API key, Adminuser ID and Password.
@@ -23,9 +21,7 @@
   - Zscaler Internet Access
 
 
-
 ## Quick Start
----
 
 1. Prepare ZIA credentiasl
 You need write your ZIA credential inforamtion at **config/config.ini**.
@@ -60,6 +56,11 @@ Commands:
         zia urlcategory COMMAND             # Run a command about urlcategory
                                               ls
                                               lookup [URLS]
+
+        zia urlfilter COMMAND                 # Run a command about firewall
+                                              ls
+                                                --id [ID]
+                                                --all
 
         zia firewall COMMAND                 # Run a command about firewall
                                               ls

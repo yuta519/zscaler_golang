@@ -27,6 +27,10 @@ type authPrepare struct {
 
 var auth authPrepare
 
+type ExemptedUrls struct {
+	Urls []string `json:"urls"`
+}
+
 func init() {
 	unix_now := time.Now().UnixNano() / int64(time.Millisecond)
 	timestamp := int(unix_now)
@@ -89,7 +93,7 @@ func Logout() {
 	}
 }
 
-func FetchExemptedUrls() {
+func FetchExemptedUrls() ExemptedUrls {
 	sessionId := Login()
 
 	base, _ := url.Parse("https://" + config.Config.Hostname)
@@ -98,5 +102,8 @@ func FetchExemptedUrls() {
 	response := infra.GetApi(endpoint, sessionId)
 	Logout()
 
-	fmt.Print(string(response))
+	var exemptedUrls ExemptedUrls
+	json.Unmarshal(response, &exemptedUrls)
+
+	return exemptedUrls
 }

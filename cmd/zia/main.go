@@ -108,15 +108,26 @@ func main() {
 			fmt.Printf("%+v\n", admin.FetchAllAdminUsers())
 		}
 		if cfg.Args[1] == "create" {
+			if len(cfg.Args) < 3 {
+				fmt.Print(`Not enough args. You need fill out :
+  - role name
+  - login name(email)
+  - user name
+  - password
+  - admin scope`)
+				flag.PrintDefaults()
+				os.Exit(0)
+			}
 			fmt.Print(admin.CreateAdminUsers(
-				"role_name",
-				"login_name",
-				"user_name",
-				"email",
-				true, // isPassword bool,
-				"password",
-				"admin_scope",
-				"name"))
+				cfg.Args[2], // "role_name",
+				cfg.Args[3], // "login_name",
+				cfg.Args[4], // "user_name",
+				cfg.Args[3], // "email",
+				true,        // isPassword bool,
+				cfg.Args[5], // "password",
+				cfg.Args[6], // "admin_scope",
+				"",          // "name",
+			))
 		}
 	case "adminrole":
 		if len(cfg.Args) < 2 {
@@ -178,19 +189,6 @@ func main() {
 		}
 	}
 }
-
-// Create New Admin Users
-// adminusers := pkg.CreateAdminUsers(
-// 	"Super Admin",
-// 	"yuta.kawamura@zscaler.net",
-// 	"yuta.kawamura@zscaler.net",
-// 	"yuta.kawamura@zscaler.net",
-// 	true,
-// 	"P@ssw0rd",
-// 	"ORGANIZATION",
-// 	"Yuta Kawamura",
-// )
-// fmt.Print(adminusers)
 
 // Create New URL Filtering Rule
 // pkg.CreateUrlFilteringRule(

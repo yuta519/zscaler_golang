@@ -107,6 +107,17 @@ func main() {
 		if cfg.Args[1] == "ls" {
 			fmt.Printf("%+v\n", admin.FetchAllAdminUsers())
 		}
+		if cfg.Args[1] == "create" {
+			fmt.Print(admin.CreateAdminUsers(
+				"role_name",
+				"login_name",
+				"user_name",
+				"email",
+				true, // isPassword bool,
+				"password",
+				"admin_scope",
+				"name"))
+		}
 	case "adminrole":
 		if len(cfg.Args) < 2 {
 			fmt.Fprint(os.Stderr, "adminrole: Please specify sub command")

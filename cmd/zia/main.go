@@ -28,6 +28,7 @@ func usage() {
 
 	zia adminuser COMMAND               # Run a command about adminusers
 	                                      ls
+										  create
 
 	zia adminrole COMMAND               # Run a command about adminusers
 	                                      ls
@@ -47,6 +48,8 @@ func usage() {
 	                                     	--all
 
 	zia network COMMAND                 # Run a command about network
+										  ipdst ls
+										  ipsrc ls
 `)
 	flag.PrintDefaults()
 	os.Exit(0)

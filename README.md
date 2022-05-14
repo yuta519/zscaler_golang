@@ -49,6 +49,12 @@ Commands:
 
         zia adminuser COMMAND               # Run a command about adminusers
                                               ls
+                                              create
+                                                <role_name>
+                                                <login_name>
+                                                <user_name>
+                                                <password>
+                                                <admin_scope>
 
         zia adminrole COMMAND               # Run a command about adminusers
                                               ls

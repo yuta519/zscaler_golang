@@ -23,34 +23,34 @@ const (
 
 func usage() {
 	fmt.Fprint(os.Stderr, `Commands:
-	zia credential                      # Show credential info placed in config.ini
+  zia credential                      # Show credential info placed in config.ini
 
-	zia auth exclude                    # Show exempted urls of cookie auth login
+  zia auth exclude                    # Show exempted urls of cookie auth login
 
-	zia adminuser COMMAND               # Run a command about adminusers
-	                                      ls
-										  create
+  zia adminuser COMMAND               # Run a command about adminusers
+                                        ls
+                                        create
 
-	zia adminrole COMMAND               # Run a command about adminusers
-	                                      ls
+  zia adminrole COMMAND               # Run a command about adminusers
+                                        ls
 
-	zia urlcategory COMMAND             # Run a command about urlcategory
-	                                      ls
-	                                      lookup [URLS
+  zia urlcategory COMMAND             # Run a command about urlcategory
+                                        ls
+                                        lookup [URLS]
 
-	zia urlfilter COMMAND                 # Run a command about firewall
-	                                      ls
-	                                     	--id [ID]
-	                                     	--all
+  zia urlfilter COMMAND                 # Run a command about firewall
+                                        ls
+                                       	--id [ID]
+                                       	--all
 
-	zia firewall COMMAND                 # Run a command about firewall
-	                                      ls
-	                                     	--id [ID]
-	                                     	--all
+  zia firewall COMMAND                 # Run a command about firewall
+                                        ls
+                                       	--id [ID]
+                                       	--all
 
-	zia network COMMAND                 # Run a command about network
-										  ipdst ls
-										  ipsrc ls
+  zia network COMMAND                 # Run a command about network
+                                        ipdst ls
+                                        ipsrc ls
 `)
 	flag.PrintDefaults()
 	os.Exit(0)

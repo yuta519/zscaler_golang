@@ -8,6 +8,7 @@ import (
 	"zscaler_golang/pkg/zia/admin"
 	"zscaler_golang/pkg/zia/auth"
 	"zscaler_golang/pkg/zia/config"
+	"zscaler_golang/pkg/zia/devices"
 	"zscaler_golang/pkg/zia/firewall"
 	"zscaler_golang/pkg/zia/network"
 	"zscaler_golang/pkg/zia/urlcategory"
@@ -101,6 +102,16 @@ func main() {
 		}
 		if cfg.Args[1] == "exclude" {
 			fmt.Printf("%+v\n", auth.FetchExemptedUrls())
+		}
+	case "device":
+		if len(cfg.Args) < 2 {
+			fmt.Fprint(os.Stderr, "device: Please specify sub command")
+			os.Exit(0)
+		}
+		if cfg.Args[1] == "ls" {
+			if len(cfg.Args) > 2 && cfg.Args[2] == "--group" {
+				fmt.Printf("%+v\n", devices.FetchDeviceGroups())
+			}
 		}
 	case "adminuser":
 		if len(cfg.Args) < 2 {

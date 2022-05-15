@@ -32,6 +32,9 @@ PASSWORD=IloveZscaler
 HOSTNAME=admin.zscaler.net
 APIKEY=XXXXXXXXXXXXXXXXXXXXX
 ```
+<img src="https://raw.githubusercontent.com/yuta519/assets/master/zscaler_golang/setup.gif" alt="How to setup">
+
+
 
 2. Build main.go
 Run below command.

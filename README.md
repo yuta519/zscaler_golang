@@ -45,31 +45,33 @@ You could try some `zia` command. Just run below, you can see usages.
 
 ```
 Commands:
-        zia credential                      # Show credential info placed in config.ini
+  zia credential                      # Show credential info placed in config.ini
 
-        zia adminuser COMMAND               # Run a command about adminusers
-                                              ls
-                                              create
-                                                <role_name>
-                                                <login_name>
-                                                <user_name>
-                                                <password>
-                                                <admin_scope>
+  zia auth exclude                    # Show exempted urls of cookie auth login
 
-        zia adminrole COMMAND               # Run a command about adminusers
-                                              ls
+  zia adminuser COMMAND               # Run a command about adminusers
+                                        ls
+                                        create
 
-        zia urlcategory COMMAND             # Run a command about urlcategory
-                                              ls
-                                              lookup [URLS]
+  zia adminrole COMMAND               # Run a command about adminusers
+                                        ls
 
-        zia urlfilter COMMAND                 # Run a command about firewall
-                                              ls
-                                                --id [ID]
-                                                --all
+  zia urlcategory COMMAND             # Run a command about urlcategory
+                                        ls
+                                        lookup [URLS]
 
-        zia firewall COMMAND                 # Run a command about firewall
-                                              ls
-                                                --id [ID]
-                                                --all
+  zia urlfilter COMMAND                 # Run a command about firewall
+                                        ls
+                                        --id [ID]
+                                        --all
+
+  zia firewall COMMAND                 # Run a command about firewall
+                                        ls
+                                        --id [ID]
+                                        --all
+
+  zia network COMMAND                 # Run a command about network
+                                        ipdst ls
+                                        ipsrc ls
+
 ```

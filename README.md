@@ -34,13 +34,13 @@ APIKEY=XXXXXXXXXXXXXXXXXXXXX
 ```
 <img src="https://raw.githubusercontent.com/yuta519/assets/master/zscaler_golang/setup.gif" alt="How to setup">
 
-
-
 2. Build main.go
 Run below command.
 > make build
 
 After running, you could find `zia` file on your current directory.
+<img src="https://raw.githubusercontent.com/yuta519/assets/master/zscaler_golang/build.gif" alt="How to build">
+
 
 3. Using `zia`
 You could try some `zia` command. Just run below, you can see usages.
@@ -78,3 +78,4 @@ Commands:
                                         ipsrc ls
 
 ```
+<img src="https://raw.githubusercontent.com/yuta519/assets/master/zscaler_golang/initial_run.gif" alt="How to build">

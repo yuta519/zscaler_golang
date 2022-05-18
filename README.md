@@ -39,6 +39,7 @@ Run below command.
 > make build
 
 After running, you could find `zia` file on your current directory.
+
 <img src="https://raw.githubusercontent.com/yuta519/assets/master/zscaler_golang/build.gif" alt="How to build">
 
 

@@ -112,6 +112,7 @@ func main() {
 			if len(cfg.Args) > 2 && cfg.Args[2] == "--group" {
 				fmt.Printf("%+v\n", devices.FetchDeviceGroups())
 			} else {
+				fmt.Printf("%+v\n", devices.FetchDevices())
 				fmt.Fprint(os.Stderr, "device: Please specify target like `--group`")
 				os.Exit(0)
 			}

@@ -11,6 +11,7 @@ import (
 	"zscaler_golang/pkg/zia/devices"
 	"zscaler_golang/pkg/zia/firewall"
 	"zscaler_golang/pkg/zia/network"
+	trafficforwarding "zscaler_golang/pkg/zia/traffic_forwarding"
 	"zscaler_golang/pkg/zia/urlcategory"
 	"zscaler_golang/pkg/zia/urlfiltering"
 )
@@ -154,6 +155,18 @@ func main() {
 		}
 		if cfg.Args[1] == "ls" {
 			fmt.Printf("%+v\n", admin.FetchAllAdminRoles())
+		}
+	case "traffic":
+		if len(cfg.Args) < 2 {
+			fmt.Fprint(os.Stderr, "traffic: Please specify sub command")
+			os.Exit(0)
+		}
+		if cfg.Args[1] == "ls" {
+			if len(cfg.Args) > 2 && cfg.Args[2] == "--gre" {
+				// fmt.Printf("%+v\n", trafficforwarding.FetchGreTunnels())
+				trafficforwarding.FetchGreTunnels()
+			} else {
+			}
 		}
 	case "urlcategory":
 		if len(cfg.Args) < 2 {

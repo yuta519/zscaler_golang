@@ -111,6 +111,9 @@ func main() {
 		if cfg.Args[1] == "ls" {
 			if len(cfg.Args) > 2 && cfg.Args[2] == "--group" {
 				fmt.Printf("%+v\n", devices.FetchDeviceGroups())
+			} else {
+				fmt.Fprint(os.Stderr, "device: Please specify target like `--group`")
+				os.Exit(0)
 			}
 		}
 	case "adminuser":

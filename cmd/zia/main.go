@@ -166,6 +166,7 @@ func main() {
 				// fmt.Printf("%+v\n", trafficforwarding.FetchGreTunnels())
 				trafficforwarding.FetchGreTunnels()
 			} else {
+				trafficforwarding.FetchGreTunnelAvailabbleInternalRanges()
 			}
 		}
 	case "urlcategory":

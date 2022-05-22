@@ -25,3 +25,13 @@ func FetchGreTunnels() {
 	auth.Logout()
 	fmt.Print(string(response))
 }
+
+func FetchGreTunnelAvailabbleInternalRanges() {
+	sessionId := auth.Login()
+	baseUrl, _ := url.Parse("https://" + config.Config.Hostname)
+	reference, _ := url.Parse("/api/v1/greTunnels/availableInternalIpRanges")
+	endpoint := baseUrl.ResolveReference(reference).String()
+	response := infra.GetApi(endpoint, sessionId)
+	auth.Logout()
+	fmt.Print(string(response))
+}

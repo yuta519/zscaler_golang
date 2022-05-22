@@ -163,7 +163,6 @@ func main() {
 		}
 		if cfg.Args[1] == "ls" {
 			if len(cfg.Args) > 2 && cfg.Args[2] == "--gre" {
-				// fmt.Printf("%+v\n", trafficforwarding.FetchGreTunnels())
 				fmt.Printf("%+v\n", trafficforwarding.FetchGreTunnels())
 			} else {
 				trafficforwarding.FetchGreTunnelAvailabbleInternalRanges()

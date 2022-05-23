@@ -41,17 +41,18 @@ func usage() {
 
   zia urlfilter COMMAND                 # Run a command about firewall
                                         ls
-                                       	--id [ID]
-                                       	--all
+                                       	  --id [ID]
+                                       	  --all
 
   zia firewall COMMAND                 # Run a command about firewall
                                         ls
-                                       	--id [ID]
-                                       	--all
+										  --id [ID]
+										  --all
 
   zia network COMMAND                 # Run a command about network
-                                        ipdst ls
-                                        ipsrc ls
+                                        ls
+										  --ipdst
+                                          --ipsrc
 `)
 	flag.PrintDefaults()
 	os.Exit(0)
@@ -209,12 +210,10 @@ func main() {
 			fmt.Fprint(os.Stderr, "network: Please specify sub command")
 			os.Exit(0)
 		}
-		if cfg.Args[1] == "ipdst" {
-			if len(cfg.Args) > 2 && cfg.Args[2] == "ls" {
+		if cfg.Args[1] == "ls" {
+			if len(cfg.Args) > 2 && cfg.Args[2] == "--ipdst" {
 				fmt.Printf("%+v\n", network.FetchIpDstGroups())
-			}
-		} else if cfg.Args[1] == "ipsrc" {
-			if len(cfg.Args) > 2 && cfg.Args[2] == "ls" {
+			} else if len(cfg.Args) > 2 && cfg.Args[2] == "--ipsrc" {
 				fmt.Printf("%+v\n", network.FetchIpSrcGroups())
 			}
 		}

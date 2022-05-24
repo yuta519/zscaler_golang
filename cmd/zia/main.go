@@ -46,12 +46,12 @@ func usage() {
 
   zia firewall COMMAND                 # Run a command about firewall
                                         ls
-										  --id [ID]
-										  --all
+                                       	  --id [ID]
+                                          --all
 
   zia network COMMAND                 # Run a command about network
                                         ls
-										  --ipdst
+                                          --ipdst
                                           --ipsrc
 `)
 	flag.PrintDefaults()

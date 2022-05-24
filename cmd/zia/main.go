@@ -53,6 +53,10 @@ func usage() {
                                         ls
                                           --ipdst
                                           --ipsrc
+
+  zia traffic COMMAND                 # Run a command about traffic
+                                        ls
+
 `)
 	flag.PrintDefaults()
 	os.Exit(0)

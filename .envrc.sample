@@ -1,0 +1,4 @@
+export ZIA_USERNAME="yuta519@github.com"
+export ZIA_PASSWORD="P@ssw0rd"
+export ZIA_HOSTNAME="zsapi.zscaler.net"
+export ZIA_APIKEY="OQ2Dzv1Nzgj5"

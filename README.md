@@ -24,7 +24,7 @@
 ## Quick Start
 
 1. Prepare ZIA credentiasl
-You need write your ZIA credential inforamtion at **config/config.ini**.
+You need write your ZIA credential inforamtion at **.envrc**.
 ```
 [zia]
 USERNAME=yuta.kawamura@zscaler.net

@@ -1,10 +1,7 @@
 package config
 
 import (
-	"log"
 	"os"
-
-	"gopkg.in/ini.v1"
 )
 
 type ConfigList struct {
@@ -17,16 +14,10 @@ type ConfigList struct {
 var Config ConfigList
 
 func init() {
-	cfg, err := ini.Load("config/config.ini")
-	if err != nil {
-		log.Printf("Failed to read file: %v", err)
-		os.Exit(1)
-	}
-
 	Config = ConfigList{
-		UserName: cfg.Section("zia").Key("USERNAME").String(),
-		Password: cfg.Section("zia").Key("PASSWORD").String(),
-		Hostname: cfg.Section("zia").Key("HOSTNAME").String(),
-		ApiKey:   cfg.Section("zia").Key("APIKEY").String(),
+		UserName: os.Getenv("ZIA_USERNAME"),
+		Password: os.Getenv("ZIA_PASSWORD"),
+		Hostname: os.Getenv("ZIA_HOSTNAME"),
+		ApiKey:   os.Getenv("ZIA_APIKEY"),
 	}
 }

@@ -16,3 +16,7 @@
 
 # set information about zscaler
 config.ini
+
+# Environment variables
+.env
+.envrc

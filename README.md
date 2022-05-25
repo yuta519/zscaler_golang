@@ -24,13 +24,12 @@
 ## Quick Start
 
 1. Prepare ZIA credentiasl
-You need write your ZIA credential inforamtion at **.envrc**.
+You need write your ZIA credential inforamtion at **.envrc** and register as evironmental variables.
 ```
-[zia]
-USERNAME=yuta.kawamura@zscaler.net
-PASSWORD=IloveZscaler
-HOSTNAME=admin.zscaler.net
-APIKEY=XXXXXXXXXXXXXXXXXXXXX
+export ZIA_USERNAME="yuta519@github.com"
+export ZIA_PASSWORD="P@ssw0rd"
+export ZIA_HOSTNAME="zsapi.zscaler.net"
+export ZIA_APIKEY="OQ2Dzv1Nzgj5"
 ```
 <img src="https://raw.githubusercontent.com/yuta519/assets/master/zscaler_golang/setup.gif" alt="How to setup">
 
